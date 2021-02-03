@@ -26,13 +26,11 @@ $ergebnis = mysqli_query($link,$abfrage) or die (mysqli_error($link));
 while($zeile = $ergebnis->fetch_array()):
 
 ?><div> 
-<p><img src="<?= $zeile['Bilder'] ?>" ></p>
+<p><a class="active" href="Artikel.php">Artikel</a>	<img src="<?= $zeile['Bilder'] ?>" ></p>
 </div><?php 
 
 endwhile;
 ?>
-
-
 
 </body>
   <hr>
