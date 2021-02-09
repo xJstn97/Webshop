@@ -12,11 +12,16 @@
 <li style="float:right"><a class="active" href="Angaben.php">Angaben</a></li>
 </ul>
 <center> <font color="white"> <font size=7> Willkommen bei GameKey </font> </center>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 
 
 <body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 <?php 
 $link=mysqli_connect("localhost","root","","Spieleshop")
 or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
@@ -25,9 +30,21 @@ $abfrage = "select Bilder from Artikel";
 $ergebnis = mysqli_query($link,$abfrage) or die (mysqli_error($link));
 while($zeile = $ergebnis->fetch_array()):
 
-?><div> 
-<p><a class="active" href="Artikel.php">Artikel</a>	<img src="<?= $zeile['Bilder'] ?>" ></p>
-</div><?php 
+?>
+<div class ="container">
+<div class="row text-center py-5">
+<div class="col-md-3 col-sm-6 my-3 my-md-0">
+<form action="Spieleshop.php" method="post">
+<div class="card shadow">
+<div>
+<p><img src="<?= $zeile['Bilder'] ?>" > class="img-fluid card-img-top"></p>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<?php 
 
 endwhile;
 ?>
