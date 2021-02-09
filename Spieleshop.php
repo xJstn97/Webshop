@@ -26,7 +26,7 @@
 $link=mysqli_connect("localhost","root","","Spieleshop")
 or die ("Keine Verbindung möglich, Versuchen Sie es später erneut!");
 
-$abfrage = "select Bilder from Artikel";
+$abfrage = "select Bilder, Artikelnr from Artikel";
 $ergebnis = mysqli_query($link,$abfrage) or die (mysqli_error($link));
 while($zeile = $ergebnis->fetch_array()):
 
@@ -34,16 +34,19 @@ while($zeile = $ergebnis->fetch_array()):
 <div class ="container">
 <div class="row text-center py-5">
 <div class="col-md-3 col-sm-6 my-3 my-md-0">
-<form action="Spieleshop.php" method="post">
+<form action="Produkte.php" method="POST">
 <div class="card shadow">
+<input type="hidden"  name="Artikelnr" value="<?=$zeile['Artikelnr'] ?>" readonly>
+<button>  
 <div>
-<p><img src="<?= $zeile['Bilder'] ?>" > class="img-fluid card-img-top"></p>
+<p><img src="<?= $zeile['Bilder'] ?>" ></p>
 </div>
 </div>
 </form>
 </div>
 </div>
 </div>
+</button>
 <?php 
 
 endwhile;
